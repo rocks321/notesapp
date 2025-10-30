@@ -232,12 +232,12 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-        "https://notoa.netlify.app", // Allow our frontend to connect
-        "http://localhost",                 // Your Android app
-        "capacitor://localhost"             // Also for your app
+        "https://notoa.netlify.app", // Your website
+        "http://localhost",
+        "capacitor://localhost"
     ],
     methods: ["GET", "POST"]
-}
+  }
 });
 
 
@@ -282,6 +282,7 @@ server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
 
 });
+
 
 
 
