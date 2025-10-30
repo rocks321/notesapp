@@ -1,5 +1,6 @@
 // Connect to our Socket.IO server
-const socket = io('http://localhost:3000');
+const API_BASE_URL = 'https://rohan-notes-api.onrender.com/api';
+const socket = io('https://rohan-notes-api.onrender.com');
 
 // Get elements from the page
 const titleInput = document.getElementById('shared-title');
@@ -102,4 +103,5 @@ if (!noteId) {
 
     // Load the note when the page opens
     getInitialNote();
+
 }
