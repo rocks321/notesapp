@@ -11,7 +11,7 @@ const addNoteBtn = document.getElementById('add-note-btn');
 let generativeModel;
 let currentNoteContent = '';
 
-// --- AI Initialization ---
+// --- AI Initialization ---------
 try {
     // NEW:
 // CORRECT
@@ -352,4 +352,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
 });
