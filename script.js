@@ -26,7 +26,6 @@ generativeModel = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // The backend server URL. For development, it's localhost.
 const API_BASE_URL = 'https://rohan-notes-api.onrender.com/api'; 
-const socket = io('https://rohan-notes-api.onrender.com');
 // --- Functions ---
 
 // Function to fetch all notes from the server and display them
@@ -355,4 +354,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
 
