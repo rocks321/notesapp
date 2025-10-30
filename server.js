@@ -216,7 +216,7 @@ app.put('/api/notes/:id',auth, async (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://127.0.0.1:5500", // Allow our frontend to connect
+    origin: "*", // Allow our frontend to connect
     methods: ["GET", "POST"]
   }
 });
@@ -261,4 +261,5 @@ socket.on('noteUpdate', async (data) => {
 // Note: We use server.listen() now, not app.listen()
 server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
+
 });
