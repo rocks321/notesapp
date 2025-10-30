@@ -40,7 +40,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors()); // Allows cross-origin requests
+const allowedOrigins = [
+  "https://your-notes.netlify.app", // Your website
+  "http://localhost",                 // Your Android app
+  "capacitor://localhost"             // Also for your app
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"]
+}));
 app.use(express.json()); // Parses incoming JSON requests
 
 // --- Connect to MongoDB Atlas ---
@@ -265,5 +280,6 @@ server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
 
 });
+
 
 
