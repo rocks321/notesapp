@@ -1,6 +1,6 @@
 // --- API Base URL ---
 const API_BASE_URL = 'https://rohan-notes-api.onrender.com/api';
-const socket = io('https://rohan-notes-api.onrender.com');
+
 
 // --- Event Listeners ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,3 +81,4 @@ async function handleLogin(event) {
     }
 
 }
+
