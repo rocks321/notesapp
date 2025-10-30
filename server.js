@@ -41,14 +41,18 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 const allowedOrigins = [
-  "https://your-notoa.netlify.app", // Your website
+  "https://notoa.netlify.app",       // Your website (no slash)
+  "https://notoa.netlify.app/",      // Your website (WITH slash)
   "http://localhost",                 // Your Android app
   "capacitor://localhost"             // Also for your app
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    // Log the origin to see what's coming in
+    console.log("REQUEST ORIGIN: ", origin); 
+
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -56,7 +60,8 @@ app.use(cors({
   },
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
-app.use(express.json()); // Parses incoming JSON requests
+
+app.use(express.json());
 
 // --- Connect to MongoDB Atlas ---
 mongoose.connect(process.env.MONGODB_URI)
@@ -231,15 +236,10 @@ app.put('/api/notes/:id',auth, async (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [
-        "https://notoa.netlify.app", // Your website
-        "http://localhost",
-        "capacitor://localhost"
-    ],
+    origin: allowedOrigins, // Re-use the array from above
     methods: ["GET", "POST"]
   }
 });
-
 
 // --- Socket.IO Connection Logic ---
 io.on('connection', (socket) => {
@@ -282,6 +282,7 @@ server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
 
 });
+
 
 
 
