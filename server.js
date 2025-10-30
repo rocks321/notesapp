@@ -41,7 +41,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 const allowedOrigins = [
-  "https://your-notes.netlify.app", // Your website
+  "https://your-notoa.netlify.app", // Your website
   "http://localhost",                 // Your Android app
   "capacitor://localhost"             // Also for your app
 ];
@@ -282,6 +282,7 @@ server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
 
 });
+
 
 
 
