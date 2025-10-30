@@ -216,7 +216,7 @@ app.put('/api/notes/:id',auth, async (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // Allow our frontend to connect
+    origin: "https://notoa.netlify.app", // Allow our frontend to connect
     methods: ["GET", "POST"]
   }
 });
@@ -263,3 +263,4 @@ server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
 
 });
+
