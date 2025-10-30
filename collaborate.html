@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Note</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <h1>Shared Note 🔗</h1>
+        <div id="shared-note-container" class="note-card shared-view">
+    <input type="text" id="shared-title" class="edit-title" placeholder="Loading title..." />
+    <textarea id="shared-content" class="edit-content" placeholder="Loading content..."></textarea>
+</div>
+<a href="/" class="back-link">← Back to all notes</a>
+    </div>
+    <script src="collaborate.js"></script>
+</body>
+</html>

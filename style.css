@@ -1,0 +1,411 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* --- 1. Color Palette & Root Variables --- */
+:root {
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --background-color: #f4f7f6; /* A very light, soft gray */
+    --card-background: #ffffff;
+    --primary-color: #0d47a1;     /* A deeper, professional blue */
+    --primary-color-light: #1877f2;
+    --text-primary: #1c1e21;
+    --text-secondary: #555;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* --- 2. General Body & App Layout --- */
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: left;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+#logout-btn {
+    background-color: var(--card-background);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#logout-btn:hover {
+    background-color: #fafafa;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+/* --- 3. Note Creator --- */
+.note-creator {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-creator input, .note-creator textarea {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-family: var(--font-family);
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.note-creator textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#add-note-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-self: flex-end;
+}
+
+#add-note-btn:hover {
+    background-color: #0b3d8a;
+}
+
+/* --- 4. Notes Grid (The Big Redesign) --- */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.note-card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative; /* For the delete button */
+}
+
+.note-card:hover {
+    box-shadow: 0 6px 16px var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+.note-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 700;
+    word-wrap: break-word;
+    color: var(--text-primary);
+}
+
+.note-card p {
+    flex-grow: 1;
+    margin: 0 0 15px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.note-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-footer span {
+    display: flex;
+    gap: 6px;
+}
+
+/* --- 5. Unified Button Styles --- */
+.share-btn, .edit-btn, .ai-btn, .save-btn, .cancel-btn {
+    background: #f0f2f5;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-family);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.share-btn:hover, .edit-btn:hover, .cancel-btn:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.save-btn {
+    background-color: var(--primary-color-light);
+    color: white;
+    border: none;
+}
+.save-btn:hover {
+    background-color: var(--primary-color);
+}
+
+.ai-btn {
+    background-color: #e0f0ff;
+    color: #0d47a1;
+    border: 1px solid #b3d4ff;
+}
+.ai-btn:hover {
+    background-color: #d0e7ff;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.delete-btn:hover {
+    color: #f44336; /* Red on hover */
+    opacity: 1;
+}
+
+/* --- 6. Edit Mode Inputs --- */
+.edit-title, .edit-content {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-family: var(--font-family);
+    margin-bottom: 10px;
+}
+.edit-title {
+    font-weight: bold;
+}
+.edit-content {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* --- 7. Auth Forms (Login/Signup) --- */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    text-align: center;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: var(--font-family);
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color-light);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auth-container button:hover {
+    background-color: var(--primary-color);
+}
+
+.auth-container p {
+    margin-top: 20px;
+    color: var(--text-secondary);
+}
+
+.auth-container a {
+    color: var(--primary-color-light);
+    text-decoration: none;
+    font-weight: 500;
+}
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* --- 8. Shared/Collaborate Page --- */
+.shared-view {
+    max-width: 700px;
+    margin: 20px auto;
+}
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--primary-color-light);
+    font-weight: 500;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* --- 9. AI Chat Modal --- */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    padding: 24px;
+    border: none;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    position: relative;
+    font-family: var(--font-family);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.modal-close-btn:hover {
+    color: #000;
+}
+
+.chat-history {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message, .ai-message {
+    padding: 10px 14px;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.user-message {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.ai-message {
+    background-color: #f1f1f1;
+    color: var(--text-primary);
+    align-self: flex-start;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input-area textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    resize: none;
+    height: 50px;
+    font-family: var(--font-family);
+    font-size: 14px;
+}
+
+.chat-input-area button {
+    padding: 0 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary-color-light);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.chat-input-area button:hover {
+    background-color: var(--primary-color);
+}

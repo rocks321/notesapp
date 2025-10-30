@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <h1>My Notes 📝</h1>
+            <button id="logout-btn">Logout 🚪</button>
+           
+        </div>
+        <div class="note-creator">
+            <input type="text" id="note-title" placeholder="Note Title..." autocomplete="off">
+            <textarea id="note-content" placeholder="Type your note here..."></textarea>
+            <button id="add-note-btn">Add Note</button>
+        </div>
+        <div id="notes-grid" class="notes-grid">
+            </div>
+    </div>
+    <div id="ai-modal-backdrop" class="modal-backdrop">
+    <div id="ai-modal" class="modal-content">
+        <h2>AI Assistant</h2>
+        <p>Chatting about: <strong id="ai-note-title">...</strong></p>
+        
+        <div id="ai-chat-history" class="chat-history">
+            <div class="ai-message">Hello! Ask me to summarize, explain, or create questions about this note.</div>
+        </div>
+
+        <div class="chat-input-area">
+            <textarea id="ai-user-prompt" placeholder="e.g., summarize this note..."></textarea>
+            <button id="ai-send-btn">Send</button>
+        </div>
+        
+        <button id="ai-close-btn" class="modal-close-btn">×</button>
+    </div>
+</div>
+
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
