@@ -1,4 +1,5 @@
 // SECURITY CHECK: Redirect to login if no token is found
+const API_URL = 'https://rohan-notes-api.onrender.com/api/notes';
 import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai/dist/index.mjs";
 const token = localStorage.getItem('authToken');
 if (!token) {
@@ -354,5 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
 
 
