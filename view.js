@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // We use our public API endpoint to get the note
-        const response = await fetch(`http://localhost:3000/api/notes/${noteId}`);
+        const API_BASE_URL = 'https://rohan-notes-api.onrender.com/api';
+
         if (!response.ok) {
             if (response.status === 404) {
                  throw new Error('Note not found.');
@@ -34,4 +35,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         sharedTitle.value = 'Error';
         sharedContent.value = error.message;
     }
+
 });
