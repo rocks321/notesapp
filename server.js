@@ -206,7 +206,28 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+// --- PUBLIC SHARED NOTE ROUTE ---
+// This allows anyone with the link to VIEW a specific note without logging in.
+// Place this BEFORE the router.get('/:id', ...) route!
 
+router.get('/shared/:id', async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id);
+        
+        if (!note) {
+            return res.status(404).json({ message: 'Note not found' });
+        }
+
+        // We only send back the title and content for security
+        res.json({
+            title: note.title,
+            content: note.content
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+});
 // PUT: Update an existing note by its ID
 app.put('/api/notes/:id',auth, async (req, res) => {
   try {
@@ -282,6 +303,7 @@ server.listen(PORT, () => {
   console.log(`Server (and sockets) is running on http://localhost:${PORT}`);
 
 });
+
 
 
 
