@@ -74,7 +74,7 @@ function createNoteElement(id, title, content, createdAt) {
             <button class="edit-btn" data-action="share-collab" data-id="${id}">Collaborate</button>
             <button class="edit-btn" data-action="edit" data-id="${id}">Edit</button>
             <button class="ai-btn" data-action="ai-chat" data-id="${id}">AI ✨</button>
-            <button class="card-btn" onclick="downloadCardPDF(this)" title="Download PDF"> 📄</button>
+
         </span>
     </div>
 `;
@@ -395,6 +395,7 @@ function downloadCardPDF(button) {
     }
 
 });
+
 
 
 
