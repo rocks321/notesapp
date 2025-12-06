@@ -16,7 +16,7 @@ let currentNoteContent = '';
 try {
     // NEW:
 // CORRECT
-const genAI = new GoogleGenerativeAI("AIzaSyAv0twSzuCX37iG4YLbXpdYFGvfHHpN8yI");
+const genAI = new GoogleGenerativeAI("AIzaSyCiUJjDkroEyxwb3-dlO8o8tSJeerUIous");
     // NEW (Correct):
 generativeModel = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     console.log("AI Model Loaded Successfully.");
@@ -395,6 +395,7 @@ function downloadCardPDF(button) {
     }
 
 });
+
 
 
 
